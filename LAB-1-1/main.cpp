@@ -1,0 +1,1 @@
+#include <stdio.h>//#include <conio.h>#include <math.h>int main() {    double x, y, z, a, b ,c, rez;    puts("\n\t x, y, z = ");		    scanf("%lf %lf %lf", &x, &y, &z);    a = pow(tan(x+y),2);		    b = exp(y-z);	    c = sqrt(cos(x*x)+sin(z*z));    rez = a-b*c;    printf("\n x = %7.3lf\n y = %7.3lf\n z = %7.3lf\nRezult = %lf\n", x, y, z, rez);    return 0;}
