@@ -14,7 +14,7 @@ int random(int min, int max) {
 int replaceElementOfArray(int **array, int n, int m) {
     int i, j, indexI = 0, indexJ, max = array[0][0], temp = array[0][0];
     for(i = 1; i < n; i++) {
-        for(j = 1; j < m; j++) {
+        for(j = 0; j < m; j++) {
             if(array[i][j] > max) {
                 max = array[i][j];
                 indexI = i;
@@ -25,7 +25,7 @@ int replaceElementOfArray(int **array, int n, int m) {
     array[0][0] = array[indexI][indexJ];
     array[indexI][indexJ] = temp;
     
-    cout << "Максимальный элемент: a[" << indexI << "][" << indexJ << "] = " << max << endl;
+    cout << "Максимальный элемент: a[" << indexI + 1 << "][" << indexJ + 1 << "] = " << max << endl;
 }
 
 int main() {
