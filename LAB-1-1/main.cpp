@@ -1,1 +1,80 @@
-#include <stdio.h>//#include <conio.h>#include <math.h>int main() {    double x, y, z, a, b ,c, rez;    puts("\n\t x, y, z = ");		    scanf("%lf %lf %lf", &x, &y, &z);    a = pow(tan(x+y),2);		    b = exp(y-z);	    c = sqrt(cos(x*x)+sin(z*z));    rez = a-b*c;    printf("\n x = %7.3lf\n y = %7.3lf\n z = %7.3lf\nRezult = %lf\n", x, y, z, rez);    return 0;}
+#include <iostream>
+#include <stdio.h>
+#include <time.h>
+#include <stdlib.h>
+
+using namespace std;
+
+// Генерация случайного числа в заданном диапазоне
+int random(int min, int max) {
+    return (double)(rand())/RAND_MAX*(max - min) + min;
+}
+
+// Функция замены первого элемента массива с максимальным значением
+int replaceElementOfArray(int **array, int n, int m) {
+    int i, j, indexI = 0, indexJ, max = array[0][0], temp = array[0][0];
+    for(i = 1; i < n; i++) {
+        for(j = 0; j < m; j++) {
+            if(array[i][j] > max) {
+                max = array[i][j];
+                indexI = i;
+                indexJ = j;
+            }
+        }
+    }
+    array[0][0] = array[indexI][indexJ];
+    array[indexI][indexJ] = temp;
+    
+    cout << "Максимальный элемент: a[" << indexI + 1 << "][" << indexJ + 1 << "] = " << max << endl;
+}
+
+int main() {
+    srand((unsigned int)time(0));
+    
+    int i, j, n, m, **array, length = 20;
+    
+    cout << "Введите размерность массива (NxM): ";
+    cin >> n >> m;
+    array = new int*[n];
+    
+    for(i = 0; i < m; i++) {
+        array[i] = new int[m];
+    }
+    
+    // Заполнение массива
+    cout << "Введите массив: " << endl;
+    for(i = 0; i < n; i++) {
+        for(j = 0; j < m; j++) {
+            cin >> array[i][j];    
+        }
+    }
+    
+    // Заполнение массива
+    //for(i = 0; i< n; i++) {
+    //    for(j = 0; j < m; j++) {
+    //        array[i][j] = random(0, 100);
+    //    }
+    //}
+    
+    for(i = 0; i< n; i++) {
+        for(j = 0; j < m; j++) {
+            cout << array[i][j] << " ";
+        }
+        cout << endl;
+    }
+    
+    replaceElementOfArray(array, n, m);
+    
+    // Вывод итогового массива
+    cout << "Обработанный массив: " << endl;
+    for(i = 0; i< n; i++) {
+        for(j = 0; j < m; j++) {
+            cout << array[i][j] << " ";
+        }
+        cout << endl;
+    }
+    
+    // Удаление массива из памяти
+    delete []array;
+    return 0;
+}
